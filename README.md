@@ -1,5 +1,5 @@
 # Stock Price Predictor
-![spp_cover](https://github.com/baranylcn/readme/assets/98966968/ecf74be7-4587-49b1-8c87-d4c1bde3f1b9)
+![spp_cover](https://github.com/baranylcn/stock_predictor_app/assets/98966968/c95233fa-40fc-49c1-86f3-cf0a4552f596)
 ## Explanation
 This project aims to take the current situation of company stock prices since the day they were founded, create a prediction model and make predictions for the future.
 ## Data
