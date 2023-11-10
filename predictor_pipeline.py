@@ -1,7 +1,6 @@
 def stock_prediction(company_name, month):
     # Import
     import yfinance as yf
-    from sklearn.model_selection import train_test_split
     import pandas as pd
     from prophet import Prophet
     from datetime import datetime, timedelta
@@ -17,21 +16,9 @@ def stock_prediction(company_name, month):
                      group_by='ticker', auto_adjust=True, prepost=True)
     df = df[["Close"]] # Target
 
-    # Splitting dataset
-    df_train, df_test = train_test_split(df, test_size=0.02, shuffle=False)
-
-    # Rename the target for df_train
-    df_train = df_train.rename(columns={"Close": "TRAINING_SET"})
-
-    # Rename the target for df_test
-    # df_test = df_test.rename(columns={"Close": "TEST_SET"})
-
-    df_train_prophet = df_train.reset_index() \
+    df = df.reset_index() \
         .rename(columns={'Date': 'ds',
-                         'TRAINING_SET': 'y'})
-    # df_test_prophet = df_test.reset_index() \
-    #    .rename(columns={'Date': 'ds',
-    #                     'TRAINING_SET': 'y'})
+                         'Close': 'y'})
 
     # Adding Holidays
     cal = calendar()
@@ -43,7 +30,7 @@ def stock_prediction(company_name, month):
     holiday_df = holiday_df.reset_index().rename(columns={'index': 'ds'})
 
     model_with_holidays = Prophet(holidays=holiday_df)
-    model_with_holidays.fit(df_train_prophet)
+    model_with_holidays.fit(df)
 
     # Predict into the Future
     future = model_with_holidays.make_future_dataframe(periods=365 * 24, freq='h',
