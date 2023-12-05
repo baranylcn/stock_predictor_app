@@ -3,7 +3,7 @@
 ## Explanation
 This project aims to take the current situation of company stock prices since the day they were founded, create a prediction model and make predictions for the future.
 ## Data
-Each time it is used, data is pulled from the "yfinance" library.
+Each time it is used, data is pulled from the yfinance library.
 ## Interface
 1. Select the company name for which you want to make stock predictions.
 2. Select the period you want to forecast.
